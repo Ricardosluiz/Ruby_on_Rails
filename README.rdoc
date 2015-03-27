@@ -1,0 +1,5 @@
+== Rails Association
+
+* Ruby version '4.2.0'
+
+* System dependencies 'Read the Gem File'

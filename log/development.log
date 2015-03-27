@@ -1,0 +1,1537 @@
+  [1m[36m (98.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (98.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFathers (20150327113228)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "fathers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150327113228"]]
+  [1m[36m (115.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateChildren (20150327113303)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "children" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "father_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.3ms)[0m  [1mCREATE  INDEX "index_children_on_father_id" ON "children" ("father_id")[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150327113303"]]
+  [1m[36m (104.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_children_on_father_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_children_on_father_id' AND type='index'
+[0m
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:33:23 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by FathersController#index as HTML
+  [1m[35mFather Load (0.2ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered fathers/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 852ms (Views: 832.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:25 -0300
+
+
+Started GET "/fathers/new" for 127.0.0.1 at 2015-03-27 08:33:34 -0300
+Processing by FathersController#new as HTML
+  Rendered fathers/_form.html.erb (15.1ms)
+  Rendered fathers/new.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 82ms (Views: 74.4ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/fathers" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+Processing by FathersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BrmB1j+9LlaWLNENfLjnzqWdTYeZfYQFvjfFTAczrM2frXXoldU/HqPsU8wt6W9OyYsJ0cq8Q7uUZyPJoAMIrw==", "father"=>{"name"=>"RicardoSL"}, "commit"=>"Create Father"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "fathers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "RicardoSL"], ["created_at", "2015-03-27 11:33:48.058013"], ["updated_at", "2015-03-27 11:33:48.058013"]]
+  [1m[36m (207.4ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/fathers/1
+Completed 302 Found in 218ms (ActiveRecord: 208.3ms)
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mFather Load (0.5ms)[0m  SELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 63ms (Views: 51.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:48 -0300
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:33:49 -0300
+Processing by FathersController#index as HTML
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered fathers/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 59ms (Views: 57.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+Processing by ChildrenController#index as HTML
+  [1m[35mChild Load (0.2ms)[0m  SELECT "children".* FROM "children"
+  Rendered children/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 59ms (Views: 55.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:33:52 -0300
+
+
+Started GET "/children/new" for 127.0.0.1 at 2015-03-27 08:33:56 -0300
+Processing by ChildrenController#new as HTML
+  Rendered children/_form.html.erb (5.3ms)
+  Rendered children/new.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 67ms (Views: 59.3ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/children/new" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+Processing by ChildrenController#new as HTML
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered children/_form.html.erb (7.7ms)
+  Rendered children/new.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 73ms (Views: 63.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:37:37 -0300
+
+
+Started GET "/children/new" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+Processing by ChildrenController#new as HTML
+  [1m[35mFather Load (0.2ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered children/_form.html.erb (3.3ms)
+  Rendered children/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 53ms (Views: 51.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:00 -0300
+
+
+Started POST "/children" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+Processing by ChildrenController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EoeDjXDA2wgYUkYiUFlNBhha1oY5n69Yj34WdgBj0DuLk3ez2qjKQC2SxOMBCMWGdEyS0GpeaOalLvDzp1N0WQ==", "child"=>{"father_id"=>"1", "name"=>"Gabriel"}, "commit"=>"Create Child"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "children" ("name", "father_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Gabriel"], ["father_id", 1], ["created_at", "2015-03-27 11:38:05.055808"], ["updated_at", "2015-03-27 11:38:05.055808"]]
+  [1m[36m (230.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/children/1
+Completed 302 Found in 238ms (ActiveRecord: 231.4ms)
+
+
+Started GET "/children/1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+Processing by ChildrenController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mChild Load (0.2ms)[0m  SELECT  "children".* FROM "children" WHERE "children"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/show.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 59ms (Views: 56.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:05 -0300
+
+
+Started GET "/children/1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+Processing by ChildrenController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mChild Load (0.2ms)[0m  SELECT  "children".* FROM "children" WHERE "children"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 62ms (Views: 60.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:38:36 -0300
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:38:38 -0300
+Processing by ChildrenController#index as HTML
+  [1m[35mChild Load (0.2ms)[0m  SELECT "children".* FROM "children"
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 66ms (Views: 64.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/children/1" for 127.0.0.1 at 2015-03-27 08:38:39 -0300
+Processing by ChildrenController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mChild Load (0.2ms)[0m  SELECT  "children".* FROM "children" WHERE "children"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 53ms (Views: 50.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:38:40 -0300
+Processing by ChildrenController#index as HTML
+  [1m[35mChild Load (0.3ms)[0m  SELECT "children".* FROM "children"
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 61ms (Views: 60.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/children/1/edit" for 127.0.0.1 at 2015-03-27 08:38:44 -0300
+Processing by ChildrenController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mChild Load (0.2ms)[0m  SELECT  "children".* FROM "children" WHERE "children"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFather Load (0.4ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered children/_form.html.erb (6.6ms)
+  Rendered children/edit.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 78ms (Views: 75.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:38:46 -0300
+Processing by ChildrenController#index as HTML
+  [1m[35mChild Load (0.2ms)[0m  SELECT "children".* FROM "children"
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 79ms (Views: 78.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+Processing by FathersController#index as HTML
+  [1m[35mFather Load (0.2ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered fathers/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 57ms (Views: 56.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:39:04 -0300
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:39:07 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 62ms (Views: 59.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:39:08 -0300
+Processing by FathersController#index as HTML
+  [1m[35mFather Load (0.3ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered fathers/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 58ms (Views: 56.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+Processing by FathersController#index as HTML
+  [1m[36mFather Load (0.3ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered fathers/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 56ms (Views: 55.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:03 -0300
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:40:05 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mFather Load (0.2ms)[0m  SELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 56ms (Views: 54.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mChild Load (0.2ms)[0m  SELECT "children".* FROM "children" WHERE "children"."father_id" = ?  [["father_id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 59ms (Views: 57.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:40:42 -0300
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mChild Load (0.1ms)[0m  SELECT "children".* FROM "children" WHERE "children"."father_id" = ?  [["father_id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 56ms (Views: 54.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:32 -0300
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mChild Load (0.1ms)[0m  SELECT "children".* FROM "children" WHERE "children"."father_id" = ?  [["father_id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 52ms (Views: 51.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:40 -0300
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mChild Load (0.1ms)[0m  SELECT "children".* FROM "children" WHERE "children"."father_id" = ?  [["father_id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 79ms (Views: 77.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:41:59 -0300
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mChild Load (0.1ms)[0m  SELECT "children".* FROM "children" WHERE "children"."father_id" = ?  [["father_id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 59ms (Views: 56.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:14 -0300
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:42:17 -0300
+Processing by FathersController#index as HTML
+  [1m[36mFather Load (0.3ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered fathers/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 60ms (Views: 58.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+Processing by FathersController#index as HTML
+  [1m[35mFather Load (0.3ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered fathers/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 58ms (Views: 56.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:41 -0300
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:42:45 -0300
+Processing by ChildrenController#index as HTML
+  [1m[36mChild Load (0.3ms)[0m  [1mSELECT "children".* FROM "children"[0m
+  [1m[35mFather Load (0.2ms)[0m  SELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 67ms (Views: 65.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:46 -0300
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+Processing by ChildrenController#index as HTML
+  [1m[36mChild Load (0.3ms)[0m  [1mSELECT "children".* FROM "children"[0m
+  [1m[35mFather Load (0.1ms)[0m  SELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 56ms (Views: 54.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:42:48 -0300
+
+
+Started GET "/children/1" for 127.0.0.1 at 2015-03-27 08:42:52 -0300
+Processing by ChildrenController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mChild Load (0.2ms)[0m  [1mSELECT  "children".* FROM "children" WHERE "children"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFather Load (0.2ms)[0m  SELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered children/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 63ms (Views: 61.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/children/1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+Processing by ChildrenController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mChild Load (0.2ms)[0m  [1mSELECT  "children".* FROM "children" WHERE "children"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mFather Load (0.2ms)[0m  SELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered children/show.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 59ms (Views: 56.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/assets/application-d5dd9df895e734baa4e6c45e5b5415a9.js?body=1" for 127.0.0.1 at 2015-03-27 08:43:02 -0300
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:43:14 -0300
+Processing by ChildrenController#index as HTML
+  [1m[36mChild Load (0.3ms)[0m  [1mSELECT "children".* FROM "children"[0m
+  [1m[35mFather Load (0.1ms)[0m  SELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 60ms (Views: 58.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:46:00 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 375ms (Views: 356.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:01 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 62ms (Views: 61.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:41 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 62ms (Views: 61.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:46:56 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 62ms (Views: 61.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:25 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 66ms (Views: 65.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:47:41 -0300
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2015-03-27 08:47:51 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (10.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/railties-4.2.0/lib/rails/templates/rails/info/routes.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 26ms (Views: 25.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 67ms (Views: 66.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:48:08 -0300
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:50:42 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (3.9ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"parents_and_children"}):
+    2: <h3><%= link_to fathers_path %></h3>
+    3: 
+    4: 
+    5: <h4><%= button_to "New", action: "new" %></h4>
+  app/views/parents_and_children/index.html.erb:5:in `_app_views_parents_and_children_index_html_erb__2490795654319849967_44900540'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (29.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (16.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (34.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:50:54 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (4.4ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (No route matches {:action=>"", :controller=>"parents_and_children"}):
+    2: <h3><%= link_to fathers_path %></h3>
+    3: 
+    4: 
+    5: <h4><%= button_to "New", action: "" %></h4>
+  app/views/parents_and_children/index.html.erb:5:in `_app_views_parents_and_children_index_html_erb__2490795654319849967_29814100'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (27.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (16.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (32.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:51:00 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (4.8ms)
+Completed 500 Internal Server Error in 9ms
+
+ActionView::Template::Error (No route matches {:action=>"", :controller=>"parents_and_children"}):
+    2: <h3><%= link_to fathers_path %></h3>
+    3: 
+    4: 
+    5: <h4><%= button_to "", action: "" %></h4>
+  app/views/parents_and_children/index.html.erb:5:in `_app_views_parents_and_children_index_html_erb__2490795654319849967_44063140'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (36.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (15.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (31.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:51:18 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 3ms
+
+SyntaxError (/home/fuller/RUB-ON-RAILS/0_TRABALHOS/Association/app/views/parents_and_children/index.html.erb:5: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+...", action: link_to fathers_path );@output_buffer.safe_append...
+...                               ^):
+  app/views/parents_and_children/index.html.erb:5: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (16.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (31.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 63ms (Views: 62.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:52:11 -0300
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:52:14 -0300
+Processing by FathersController#index as HTML
+  [1m[35mFather Load (0.2ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered fathers/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 75ms (Views: 69.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:52:17 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mChild Load (0.2ms)[0m  SELECT "children".* FROM "children" WHERE "children"."father_id" = ?  [["father_id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 96ms (Views: 77.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:52:18 -0300
+Processing by FathersController#index as HTML
+  [1m[36mFather Load (0.3ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered fathers/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 73ms (Views: 72.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2015-03-27 08:53:05 -0300
+Processing by Rails::InfoController#routes as HTML
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/actionpack-4.2.0/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.2.0/gems/railties-4.2.0/lib/rails/templates/rails/info/routes.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+Processing by FathersController#index as HTML
+  [1m[35mFather Load (0.2ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered fathers/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 108ms (Views: 106.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:53:23 -0300
+
+
+Started GET "/parents_and_children/index" for 127.0.0.1 at 2015-03-27 08:53:25 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 67ms (Views: 66.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:53:26 -0300
+Processing by FathersController#index as HTML
+  [1m[36mFather Load (0.3ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered fathers/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 72ms (Views: 70.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/parents_and_children/index" for 127.0.0.1 at 2015-03-27 08:53:34 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 68ms (Views: 67.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/parents_and_children/index" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 65ms (Views: 64.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:54:10 -0300
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:54:13 -0300
+Processing by FathersController#index as HTML
+  [1m[35mFather Load (0.3ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered fathers/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 71ms (Views: 69.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fathers/1" for 127.0.0.1 at 2015-03-27 08:54:15 -0300
+Processing by FathersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mChild Load (0.2ms)[0m  SELECT "children".* FROM "children" WHERE "children"."father_id" = ?  [["father_id", 1]]
+  Rendered fathers/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 69ms (Views: 66.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:54:47 -0300
+Processing by FathersController#index as HTML
+  [1m[36mFather Load (0.3ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered fathers/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 61ms (Views: 60.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/parents_and_children/index" for 127.0.0.1 at 2015-03-27 08:54:48 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 66ms (Views: 65.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:54:49 -0300
+Processing by FathersController#index as HTML
+  [1m[35mFather Load (0.3ms)[0m  SELECT "fathers".* FROM "fathers"
+  Rendered fathers/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 71ms (Views: 69.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fathers" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+Processing by FathersController#index as HTML
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT "fathers".* FROM "fathers"[0m
+  Rendered fathers/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 61ms (Views: 59.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:07 -0300
+
+
+Started GET "/parents_and_children/index" for 127.0.0.1 at 2015-03-27 08:55:09 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 67ms (Views: 66.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:55:09 -0300
+Processing by ChildrenController#index as HTML
+  [1m[35mChild Load (0.2ms)[0m  SELECT "children".* FROM "children"
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 72ms (Views: 71.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+Processing by ChildrenController#index as HTML
+  [1m[35mChild Load (0.2ms)[0m  SELECT "children".* FROM "children"
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 82ms (Views: 80.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/scaffolds-38adb5d8ffcd5c9780636ca4e8a93627.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/application-33042ffedae0dc37a3b3d2ebc112724b.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/fathers-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/parents_and_children-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/fathers-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/parents_and_children-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/assets/application-8ce5067598cd03bc722b97db5dd776ec.js?body=1" for 127.0.0.1 at 2015-03-27 08:55:32 -0300
+
+
+Started GET "/children/1" for 127.0.0.1 at 2015-03-27 08:55:35 -0300
+Processing by ChildrenController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mChild Load (0.5ms)[0m  SELECT  "children".* FROM "children" WHERE "children"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mFather Load (0.2ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/show.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 91ms (Views: 87.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/children" for 127.0.0.1 at 2015-03-27 08:55:40 -0300
+Processing by ChildrenController#index as HTML
+  [1m[35mChild Load (0.3ms)[0m  SELECT "children".* FROM "children"
+  [1m[36mFather Load (0.1ms)[0m  [1mSELECT  "fathers".* FROM "fathers" WHERE "fathers"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered children/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 75ms (Views: 73.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/parents_and_children/index" for 127.0.0.1 at 2015-03-27 08:55:43 -0300
+Processing by ParentsAndChildrenController#index as HTML
+  Rendered parents_and_children/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 67ms (Views: 66.3ms | ActiveRecord: 0.0ms)
