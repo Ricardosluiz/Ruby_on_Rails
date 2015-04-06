@@ -1,5 +1,6 @@
-== Rails Association
+== Rails Association (belongs_to and has_many)
 
-* Ruby version '4.2.0'
+--#-- Version
 
-* System dependencies 'Read the Gem File'
+* Ruby version  '2.2.0'
+* Rails version '4.2.0'
